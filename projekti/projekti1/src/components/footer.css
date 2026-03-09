@@ -1,0 +1,100 @@
+.footer-container {
+  .footer-container {
+  background-color: #050505;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 80px 10% 40px 10%;
+  
+  /* ADD THESE LINES */
+  position: relative; 
+        /* Ensures it stays above the JS logo */
+  width: 100%;
+  clear: both;         /* Prevents floating elements from messing with it */
+  /* margin-top: 200px;   Pushes it away from the cards */
+  display: block;
+}
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 40px;
+  margin-bottom: 60px;
+}
+
+.footer-brand h2 {
+  font-size: 2rem;
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+  color: white;
+}
+
+.footer-brand p {
+  color: #a0a0a0;
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+}
+
+.footer-links {
+  display: flex;
+  gap: 80px;
+}
+
+.link-group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.link-group h4 {
+  color: white;
+  font-size: 1.1rem;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.link-group a {
+  color: #a0a0a0;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: color 0.3s ease;
+}
+
+.link-group a:hover {
+  color: #00d2ff; /* Your teal accent */
+}
+
+.footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  padding-top: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #555;
+  font-size: 0.85rem;
+}
+
+.made-by {
+  color: #00d2ff;
+  font-weight: 500;
+  opacity: 0.8;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .footer-content {
+    flex-direction: column;
+    text-align: center;
+  }
+  .footer-links {
+    width: 100%;
+    justify-content: center;
+    gap: 40px;
+  }
+  .footer-bottom {
+    flex-direction: column;
+    gap: 15px;
+  }
+}
