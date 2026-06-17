@@ -61,7 +61,7 @@
 
 
 #root {
-  /* max-width: 4000px; */
+  max-width: 100%;
   margin:  auto;
   /* padding: 2rem; */
   text-align: center;
@@ -610,30 +610,57 @@ align-items: center;
 
 
 
-.footer-container { 
-  background-color: #10064382;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  padding: 80px 10% 40px 10%;
-  border-radius: 0%;
+.footer-container {
+  /* This color is from your latest screenshot */
+  background-color: #120f3d; 
   
-  /* ADD THESE LINES */
-  position: relative; 
-        /* Ensures it stays above the JS logo */
-  width: 100%;
-  clear: both;         /* Prevents floating elements from messing with it */
-  margin-top: -978px;   /* Pushes it away from the cards */
-  display: block;
+  /* Forces the blue to touch both edges of the screen */
+  width: 100vw; 
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  margin-top: -980px; /* Space above the footer */
+  
+  padding: 80px 0; /* Vertical padding */
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 -20px 50px rgba(0, 210, 255, 0.05);
+}
 
+.social-icons {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 10px;
+}
+
+.social-link img {
+  width: 24px;
+  height: 24px;
+  filter: invert(1) opacity(0.6); /* Makes icons white/dimmed */
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Hover Effects: Icons Grow and Glow Teal */
+.social-link:hover img {
+  transform: scale(1.3) translateY(-5px);
+  filter: invert(48%) sepia(79%) saturate(2476%) hue-rotate(160deg) brightness(118%) contrast(119%); /* Teal color */
+  drop-shadow: 0 0 10px rgba(0, 210, 255, 0.8);
 }
 
 .footer-content {
+  /* Keeps your text and links centered in the middle of the blue bar */
+  max-width: 1200px;
+  grid-template-columns: 1fr 1fr 1fr;
+  margin: 0 auto;
   display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  flex-wrap: wrap;
-  /* gap: 40px;
-  margin-bottom: 60px; */
+  justify-content: space-around;
+  padding: 0 5%;
+}
 
+
+.footer-logo{
+margin-left: -100px;
 }
 
 .footer-brand h2 {
@@ -647,6 +674,7 @@ align-items: center;
   color: #a0a0a0;
   font-size: 0.9rem;
   letter-spacing: 1px;
+  margin-left: -100px;
 }
 
 .footer-links {
@@ -655,9 +683,27 @@ align-items: center;
 }
 
 .link-group {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
+  /* Step 1: MAKE IT BIGGER */
+  font-size: 1.4rem; /* Adjust this number to get the perfect scale */
+  font-weight: 700; /* Bold to match the logo’s impact */
+  line-height: 1.3;
+  letter-spacing: 0.5px;
+  line-height: 0.5;
+  
+  /* STEP 2: APPLY THE COLOR AND GLOW (Matching the middle logo) */
+  color: transparent; /* Required for the gradient to show */
+  background: linear-gradient(90deg, #00d2ff, #3a7bd5); /* Your existing teal/blue gradient */
+  -webkit-background-clip: text; /* Clip gradient to the letters */
+  background-clip: text;
+  
+  /* Add the signature glow effect */
+  text-shadow: 0 0 15px rgba(0, 210, 255, 0.5); /* A diffused teal aura */
+  
+  /* Add a subtle animation (like a slow, breathing pulse) */
+  animation: phraseBreathing 6s ease-in-out infinite alternate;
+  
+  /* border-left: 3px solid #00d2ff;  Your teal accent line, now thicker and brighter */
+  /* padding-left: 20px; */ 
 }
 
 .link-group h4 {
@@ -673,10 +719,25 @@ align-items: center;
   text-decoration: none;
   font-size: 1rem;
   transition: color 0.3s ease;
+  position: relative;
+  display: inline-block;
+  transition: all 0.3s ease;
 }
 
 .link-group a:hover {
   color: #00d2ff; /* Your teal accent */
+  color: #00d2ff;
+  padding-left: 8px;
+
+}
+
+.footer-logo span {
+  animation: textPulse 4s infinite alternate;
+}
+
+@keyframes textPulse {
+  0% { filter: drop-shadow(0 0 2px rgba(0, 210, 255, 0.2)); }
+  100% { filter: drop-shadow(0 0 15px rgba(0, 210, 255, 0.6)); }
 }
 
 .footer-bottom {
@@ -687,12 +748,14 @@ align-items: center;
   align-items: center;
   color: #555;
   font-size: 0.85rem;
+  margin-left: 500px;
 }
 
 .made-by {
   color: #00d2ff;
   font-weight: 500;
   opacity: 0.8;
+  margin-right: 500px;
 }
 
 /* Responsive */

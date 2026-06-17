@@ -9,7 +9,7 @@
         /* Ensures it stays above the JS logo */
   width: 100%;
   clear: both;         /* Prevents floating elements from messing with it */
-  /* margin-top: 200px;   Pushes it away from the cards */
+  margin-top: 200px;   /* Pushes it away from the cards */
   display: block;
 }
 }

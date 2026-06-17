@@ -162,26 +162,47 @@ function App() {
 
 
 <footer className="footer-container">
-      <div className="footer-content">
+      <div className="footer-content centered">
+        
+        <div className="link-group">
+    {/* <h4>Specialties</h4> */}
+    <p className="specialty-item">Turning 'What if?'</p>
+       <p>into 'What's next?'</p>
+    
+  </div>
+        
+        
+        
+        
+        
+        
         <div className="footer-brand">
           <h2 className="footer-logo">EDI <span className="gradient-text">TECH</span></h2>
           <p>Programming | Development | Innovation</p>
         </div>
 
-        <div className="footer-links">
+        {/* <div className="footer-links">
           <div className="link-group">
             <h4>Navigation</h4>
             <a href="#">Home</a>
             <a href="#">Projects</a>
             <a href="#">About Us</a>
-          </div>
+          </div> */}
           <div className="link-group">
             <h4>Connect</h4>
-            <a href="#">GitHub</a>
-            <a href="#">LinkedIn</a>
-            <a href="#">Email</a>
+            <div className="social-icons">
+    <a href="#" className="social-link instagram">
+      <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram" />
+    </a>
+    <a href="#" className="social-link facebook">
+      <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook" />
+    </a>
+    <a href="#" className="social-link whatsapp">
+      <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp" />
+    </a>
+  </div>
           </div>
-        </div>
+        {/* </div> */}
       </div>
 
       <div className="footer-bottom">
