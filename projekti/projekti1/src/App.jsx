@@ -166,7 +166,7 @@ function App() {
         
         <div className="link-group">
     {/* <h4>Specialties</h4> */}
-    <p className="specialty-item">Turning 'What if?'</p>
+    <p className="specialty-item">Turning 'What if?'</p> 
        <p>into 'What's next?'</p>
     
   </div>
