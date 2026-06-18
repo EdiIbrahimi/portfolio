@@ -1,28 +1,47 @@
+/* ==========================================
+   GLOBAL & ROOT STYLES
+   ========================================== */
+:root {
+  --bg-card: #00000082;
+  --bg-card-solid: #121212;
+  --border-color: rgba(255, 255, 255, 0.1);
+  --accent-color: #00d2ff; /* Electric Blue */
+  --text-main: #ffffff;
+  --text-dim: #a0a0a0;
+}
+
+#root {
+  max-width: 1200px; /* Constrains content beautifully on ultrawide monitors */
+  margin: 0 auto;
+  text-align: center;
+  padding: 20px;
+}
+
+/* ==========================================
+   HERO SECTION
+   ========================================== */
 .hero-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  /* min-height: 80vh; */
   background: #00000082; /* Deep black background */
-  /* padding: 20px; */
   border-radius: 40px;
+  margin-bottom: 60px;
 }
 
 .glass-panel {
   display: grid;
   grid-template-columns: 1.2fr 0.8fr; /* Text gets more space */
   gap: 40px;
-  /* max-width: 1100px; */
-
   backdrop-filter: blur(15px);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 40px;
   padding: 60px;
   position: relative;
   overflow: hidden;
+  width: 100%;
 }
 
-/* The Teal Text Glow */
 .gradient-text {
   background: linear-gradient(90deg, #00d2ff, #3a7bd5);
   -webkit-background-clip: text;
@@ -32,9 +51,22 @@
 
 .text-side h1 {
   font-family: 'Inter', sans-serif;
-  font-size: 1.5rem;
+  font-size: 2.5rem;
   margin-bottom: 20px;
   color: white;
+  text-align: left;
+}
+
+.duo-stats {
+  display: flex;
+  gap: 30px;
+  margin-top: 20px;
+  color: white;
+}
+
+.stat-item strong {
+  color: var(--accent-color);
+  font-size: 1.2rem;
 }
 
 .logo-side {
@@ -56,105 +88,62 @@
   50% { transform: translateY(-20px); }
 }
 
-
-
-
-
-#root {
-  max-width: 100%;
-  margin:  auto;
-  /* padding: 2rem; */
-  text-align: center;
-  height: 100vh;
+/* ==========================================
+   BRAND DIVIDER
+   ========================================== */
+/* ==========================================
+   BACKGROUND WATERMARK EFFECT
+   ========================================== */
+.background-watermark {
+  position: fixed;        /* Pulls it completely out of the layout flow */
+   top: 50%;              /* Centers it vertically on the screen */
+   left: 50%;              /* Centers it horizontally on the screen */
+  transform: translate(-50%, -50%); /* Locks the exact center of the image to the center of the screen */
+  width: 100%;           /* Controls the size of the background logo */
+  z-index: -1;            /* Places it layer-wise BEHIND the cards, hero, and footer */
+  pointer-events: none;   /* Makes it unclickable so it never interferes with selecting text or clicking buttons */
+            /* Blends it into the dark background so it doesn't overpower your text */
 }
 
-.logo {
-  /* height: vh; */
-  width: 99vw;
-align-items: center;
-  /* padding: 3rem; */
-  
-  position: absolute; 
-  top: 0%; /* Adjust this to move the logo up or down */
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: -1;
-  opacity: 60%;
-  
-  
-  /* THIS IS THE KEY */
-  /* z-index: 0;  */
-   /* Keep it very faint so it doesn't distract */
-  
-  
+.background-watermark img {
+  width: 100%;
+  height: auto;
 }
 
-.teksti1 {
-  position: absolute; /* Moves it out of the normal flow */
-  top: 15%;           /* Move down 50% of container */
-  left: 50%;          /* Move right 50% of container */
-  transform: translate(-50%, -50%); /* Perfectly centers it */
-  
-  text-align: center;
-  color: #16f9de;     /* Your new Orange color */
-  text-shadow: 0 0 20px rgba(0, 0, 0, 0); /* Dark shadow so it pops */
-  z-index: 10;        /* Ensures it stays on top */
+/* ==========================================
+   PROJECTS GRID & CARDS (Refactored Hacking)
+   ========================================== */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Creates 3 equal horizontal columns automatically */
+  gap: 30px;                             /* Space between cards */
+  margin: 60px 0;
+  width: 100%;
 }
 
-.teksti2 {
-  position: absolute; /* Moves it out of the normal flow */
-  top: 30%;           /* Move down 50% of container */
-  left: 50%;          /* Move right 50% of container */
-  transform: translate(-50%, -50%); /* Perfectly centers it */
-  
-  text-align: center;
-  color: #16f9de;     /* Your new Orange color */
-  text-shadow: 0 0 20px rgba(0, 0, 0, 0); /* Dark shadow so it pops */
-  z-index: 10;        /* Ensures it stays on top */
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-:root {
-  --bg-card: #00000082;
-  --border-color: rgba(255, 255, 255, 0.1);
-  --accent-color: #00d2ff; /* Electric Blue */
-  --text-main: #ffffff;
-  --text-dim: #a0a0a0;
-}
-
+/* Single unified reusable class for all cards */
+/* ==========================================
+   CARD GLASS LAYER OVERRIDE
+   ========================================== */
 .project-card {
-  width: 380px;
-  background: var(--bg-card);
+  /* This changes it from transparent black to a solid, deep background color */
+  background: var(--bg-card-solid) !important; 
   border-radius: 24px;
   border: 1px solid var(--border-color);
   overflow: hidden;
   position: relative;
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   cursor: pointer;
-  left: -24%;
-  top: 6%;
+  display: flex;
+  flex-direction: column;
 }
 
-/* The Glow Effect on Hover */
+/* Keeps all 3 cards consistently solid */
+.projects-grid .project-card:nth-child(2),
+.projects-grid .project-card:nth-child(3) {
+  background: var(--bg-card-solid) !important;
+}
+
 .project-card:hover {
   transform: translateY(-10px);
   border-color: var(--accent-color);
@@ -221,6 +210,7 @@ align-items: center;
 
 .card-body {
   padding: 24px;
+  text-align: left;
 }
 
 .card-body h3 {
@@ -255,6 +245,7 @@ align-items: center;
   padding: 0 24px 24px 24px;
   display: flex;
   gap: 15px;
+  margin-top: auto; /* Pushes layout buttons perfectly to bottom */
 }
 
 .btn-primary {
@@ -266,6 +257,8 @@ align-items: center;
   font-weight: 600;
   font-size: 14px;
   transition: 0.3s;
+  flex: 1;
+  text-align: center;
 }
 
 .btn-secondary {
@@ -276,397 +269,46 @@ align-items: center;
   border: 1px solid var(--border-color);
   font-size: 14px;
   transition: 0.3s;
+  flex: 1;
+  text-align: center;
 }
 
 .btn-primary:hover { opacity: 0.8; }
 .btn-secondary:hover { background: rgba(255, 255, 255, 0.05); }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-:root {
-  --bg-card: #121212;
-  --border-color: rgba(255, 255, 255, 0.1);
-  --accent-color: #00d2ff; /* Electric Blue */
-  --text-main: #ffffff;
-  --text-dim: #a0a0a0;
-}
-
-.project-card1 {
-  width: 380px;
-  background: var(--bg-card);
-  border-radius: 24px;
-  border: 1px solid var(--border-color);
-  overflow: hidden;
-  position: relative;
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  cursor: pointer;
-  top:  -65%;
-  left: 28%;
-}
-
-/* The Glow Effect on Hover */
-.project-card1:hover {
-  transform: translateY(-10px);
-  border-color: var(--accent-color);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(0, 210, 255, 0.1);
-}
-
-.card-header1 {
-  padding: 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.tag1 {
-  font-size: 12px;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  background: rgba(255, 255, 255, 0.05);
-  padding: 4px 12px;
-  border-radius: 20px;
-  color: var(--accent-color);
-}
-
-.status1 {
-  font-size: 12px;
-  color: var(--text-dim);
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.pulse-dot1 {
-  width: 8px;
-  height: 8px;
-  background: #39ff14;
-  border-radius: 50%;
-  box-shadow: 0 0 8px #39ff14;
-  animation: pulse 2s infinite;
-}
-
-@keyframes pulse {
-  0% { transform: scale(0.95); opacity: 0.7; }
-  70% { transform: scale(1.2); opacity: 0.2; }
-  100% { transform: scale(0.95); opacity: 0.7; }
-}
-
-.image-container {
-  width: 100%;
-  height: 200px;
-  overflow: hidden;
-  background: #1a1a1a;
-}
-
-.image-container img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.5s ease;
-}
-
-.project-card1:hover .image-container img {
-  transform: scale(1.1);
-}
-
-.card-body1 {
-  padding: 24px;
-}
-
-.card-body1 h3 {
-  margin: 0 0 10px 0;
-  font-size: 22px;
-  color: var(--text-main);
-}
-
-.card-body1 p {
-  font-size: 14px;
-  color: var(--text-dim);
-  line-height: 1.6;
-}
-
-.tech-stack1 {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 20px;
-}
-
-.tech-stack1 span {
-  font-size: 11px;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  padding: 2px 8px;
-  border-radius: 4px;
-  color: var(--text-dim);
-}
-
-.card-footer1 {
-  padding: 0 24px 24px 24px;
-  display: flex;
-  gap: 15px;
-}
-
-.btn-primary {
-  text-decoration: none;
-  background: var(--text-main);
-  color: black;
-  padding: 10px 20px;
-  border-radius: 12px;
-  font-weight: 600;
-  font-size: 14px;
-  transition: 0.3s;
-}
-
-.btn-secondary {
-  text-decoration: none;
-  color: var(--text-main);
-  padding: 10px 20px;
-  border-radius: 12px;
-  border: 1px solid var(--border-color);
-  font-size: 14px;
-  transition: 0.3s;
-}
-
-.btn-primary:hover { opacity: 0.8; }
-.btn-secondary:hover { background: rgba(255, 255, 255, 0.05); }
-
-
-
-
-
-
-
-
-
-
-
-:root {
-  --bg-card: #121212;
-  --border-color: rgba(255, 255, 255, 0.1);
-  --accent-color: #00d2ff; /* Electric Blue */
-  --text-main: #ffffff;
-  --text-dim: #a0a0a0;
-}
-
-.project-card2 {
-  width: 380px;
-  background: var(--bg-card);
-  border-radius: 24px;
-  border: 1px solid var(--border-color);
-  overflow: hidden;
-  position: relative;
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  cursor: pointer;
-  top:-136%;
-  left: 80%;
-}
-
-/* The Glow Effect on Hover */
-.project-card2:hover {
-  transform: translateY(-10px);
-  border-color: var(--accent-color);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(0, 210, 255, 0.1);
-}
-
-.card-header2 {
-  padding: 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.tag2 {
-  font-size: 12px;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  background: rgba(255, 255, 255, 0.05);
-  padding: 4px 12px;
-  border-radius: 20px;
-  color: var(--accent-color);
-}
-
-.status2 {
-  font-size: 12px;
-  color: var(--text-dim);
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.pulse-dot2 {
-  width: 8px;
-  height: 8px;
-  background: #39ff14;
-  border-radius: 50%;
-  box-shadow: 0 0 8px #39ff14;
-  animation: pulse 2s infinite;
-}
-
-@keyframes pulse {
-  0% { transform: scale(0.95); opacity: 0.7; }
-  70% { transform: scale(1.2); opacity: 0.2; }
-  100% { transform: scale(0.95); opacity: 0.7; }
-}
-
-.image-container {
-  width: 100%;
-  height: 200px;
-  overflow: hidden;
-  background: #1a1a1a;
-}
-
-.image-container img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.5s ease;
-}
-
-.project-card2:hover .image-container img {
-  transform: scale(1.1);
-}
-
-.card-body2 {
-  padding: 24px;
-}
-
-.card-body2 h3 {
-  margin: 0 0 10px 0;
-  font-size: 22px;
-  color: var(--text-main);
-}
-
-.card-body2 p {
-  font-size: 14px;
-  color: var(--text-dim);
-  line-height: 1.6;
-}
-
-.tech-stack2 {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 20px;
-}
-
-.tech-stack2 span {
-  font-size: 11px;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  padding: 2px 8px;
-  border-radius: 4px;
-  color: var(--text-dim);
-}
-
-.card-footer2 {
-  padding: 0 24px 24px 24px;
-  display: flex;
-  gap: 15px;
-}
-
-.btn-primary {
-  text-decoration: none;
-  background: var(--text-main);
-  color: black;
-  padding: 10px 20px;
-  border-radius: 12px;
-  font-weight: 600;
-  font-size: 14px;
-  transition: 0.3s;
-}
-
-.btn-secondary {
-  text-decoration: none;
-  color: var(--text-main);
-  padding: 10px 20px;
-  border-radius: 12px;
-  border: 1px solid var(--border-color);
-  font-size: 14px;
-  transition: 0.3s;
-}
-
-.btn-primary:hover { opacity: 0.8; }
-.btn-secondary:hover { background: rgba(255, 255, 255, 0.05); }
-
-
-
-
-
-
-
-
-
-
+/* ==========================================
+   FOOTER SECTION
+   ========================================== */
 .footer-container {
-  /* This color is from your latest screenshot */
   background-color: #120f3d; 
-  
-  /* Forces the blue to touch both edges of the screen */
   width: 100vw; 
   position: relative;
   left: 50%;
   right: 50%;
   margin-left: -50vw;
   margin-right: -50vw;
-  margin-top: -980px; /* Space above the footer */
-  
-  padding: 80px 0; /* Vertical padding */
+  padding: 60px 0 30px 0;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow: 0 -20px 50px rgba(0, 210, 255, 0.05);
 }
 
-.social-icons {
-  display: flex;
-  gap: 15px;
-  margin-bottom: 10px;
-}
-
-.social-link img {
-  width: 24px;
-  height: 24px;
-  filter: invert(1) opacity(0.6); /* Makes icons white/dimmed */
-  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-/* Hover Effects: Icons Grow and Glow Teal */
-.social-link:hover img {
-  transform: scale(1.3) translateY(-5px);
-  filter: invert(48%) sepia(79%) saturate(2476%) hue-rotate(160deg) brightness(118%) contrast(119%); /* Teal color */
-  drop-shadow: 0 0 10px rgba(0, 210, 255, 0.8);
-}
-
 .footer-content {
-  /* Keeps your text and links centered in the middle of the blue bar */
   max-width: 1200px;
-  grid-template-columns: 1fr 1fr 1fr;
   margin: 0 auto;
   display: flex;
-  justify-content: space-around;
-  padding: 0 5%;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 40px;
 }
 
-
-.footer-logo{
-margin-left: -100px;
+.footer-brand {
+  text-align: center;
 }
 
 .footer-brand h2 {
   font-size: 2rem;
   letter-spacing: 2px;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
   color: white;
 }
 
@@ -674,61 +316,35 @@ margin-left: -100px;
   color: #a0a0a0;
   font-size: 0.9rem;
   letter-spacing: 1px;
-  margin-left: -100px;
 }
 
-.footer-links {
+.social-icons {
   display: flex;
-  gap: 80px;
+  gap: 15px;
+}
+
+.social-link img {
+  width: 24px;
+  height: 24px;
+  filter: invert(1) opacity(0.6);
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.social-link:hover img {
+  transform: scale(1.3) translateY(-5px);
+  filter: invert(48%) sepia(79%) saturate(2476%) hue-rotate(160deg) brightness(118%) contrast(119%); /* Teal */
 }
 
 .link-group {
-  /* Step 1: MAKE IT BIGGER */
-  font-size: 1.4rem; /* Adjust this number to get the perfect scale */
-  font-weight: 700; /* Bold to match the logo’s impact */
-  line-height: 1.3;
+  font-size: 1.2rem;
+  font-weight: 700;
   letter-spacing: 0.5px;
-  line-height: 0.5;
-  
-  /* STEP 2: APPLY THE COLOR AND GLOW (Matching the middle logo) */
-  color: transparent; /* Required for the gradient to show */
-  background: linear-gradient(90deg, #00d2ff, #3a7bd5); /* Your existing teal/blue gradient */
-  -webkit-background-clip: text; /* Clip gradient to the letters */
+  color: transparent;
+  background: linear-gradient(90deg, #00d2ff, #3a7bd5);
+  -webkit-background-clip: text;
   background-clip: text;
-  
-  /* Add the signature glow effect */
-  text-shadow: 0 0 15px rgba(0, 210, 255, 0.5); /* A diffused teal aura */
-  
-  /* Add a subtle animation (like a slow, breathing pulse) */
-  animation: phraseBreathing 6s ease-in-out infinite alternate;
-  
-  /* border-left: 3px solid #00d2ff;  Your teal accent line, now thicker and brighter */
-  /* padding-left: 20px; */ 
-}
-
-.link-group h4 {
-  color: white;
-  font-size: 1.1rem;
-  margin-bottom: 8px;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-
-.link-group a {
-  color: #a0a0a0;
-  text-decoration: none;
-  font-size: 1rem;
-  transition: color 0.3s ease;
-  position: relative;
-  display: inline-block;
-  transition: all 0.3s ease;
-}
-
-.link-group a:hover {
-  color: #00d2ff; /* Your teal accent */
-  color: #00d2ff;
-  padding-left: 8px;
-
+  text-shadow: 0 0 15px rgba(0, 210, 255, 0.5);
+  text-align: left;
 }
 
 .footer-logo span {
@@ -741,36 +357,82 @@ margin-left: -100px;
 }
 
 .footer-bottom {
+  max-width: 1200px;
+  margin: 40px auto 0 auto;
+  padding: 20px 40px 0 40px;
   border-top: 1px solid rgba(255, 255, 255, 0.05);
-  padding-top: 30px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  color: #555;
+  color: #666;
   font-size: 0.85rem;
-  margin-left: 500px;
 }
 
 .made-by {
   color: #00d2ff;
   font-weight: 500;
   opacity: 0.8;
-  margin-right: 500px;
 }
 
-/* Responsive */
+/* ==========================================
+   MEDIA QUERIES (Responsiveness Engine)
+   ========================================== */
+
+/* Tablet Layout (Under 1024px) */
+@media (max-width: 1024px) {
+  .projects-grid {
+    grid-template-columns: repeat(2, 1fr); /* Adjusts to 2 columns */
+    padding: 0 20px;
+  }
+}
+
+/* Mobile Layout (Under 768px) */
 @media (max-width: 768px) {
-  .footer-content {
-    flex-direction: column;
+  .glass-panel {
+    grid-template-columns: 1fr; /* Stacks text side and logo side */
+    gap: 30px;
+    padding: 40px 20px;
+  }
+
+  .text-side h1 {
+    font-size: 1.8rem;
     text-align: center;
   }
-  .footer-links {
-    width: 100%;
+
+  .duo-stats {
     justify-content: center;
-    gap: 40px;
   }
+
+  .logo-side {
+    border-left: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 30px;
+  }
+
+  .projects-grid {
+    grid-template-columns: 1fr; /* Stacks cards in 1 pristine single column */
+    justify-items: center;
+    padding: 0 10px;
+  }
+
+  .project-card {
+    max-width: 400px;
+    width: 100%;
+  }
+
+  .footer-content {
+    flex-direction: column; /* Stacks footer modules vertically */
+    gap: 30px;
+    text-align: center;
+  }
+
+  .link-group {
+    text-align: center;
+  }
+
   .footer-bottom {
     flex-direction: column;
-    gap: 15px;
+    gap: 10px;
+    text-align: center;
   }
 }
