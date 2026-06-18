@@ -1,4 +1,15 @@
 /* ==========================================
+   GLOBAL BODY STYLES
+   ========================================== */
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #0a091d; /* Deep, premium dark blue background */
+}
+
+
+
+/* ==========================================
    GLOBAL & ROOT STYLES
    ========================================== */
 :root {

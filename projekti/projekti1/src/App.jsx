@@ -250,9 +250,7 @@ function App() {
 
       {/* Javascript Brand Logo */}
       {/* Javascript Background Watermark */}
-<div className="background-watermark">
-   <img src={javascript1} alt="Javascript Backdrop" />
-</div>
+
 
       {/* Projects Grid Container */}
       <section className="projects-grid">
